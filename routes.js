@@ -1,8 +1,14 @@
-module.exports = app => {
-  console.log('Entered Routes...'); // bbarreto_debug
+export const routes = (app, models) => {
+  const { Item } = models;
 
-  app.get('/api/graph', (req, res) => {
-    // Just some hello world stuff for now...
-    res.send('Hello there!');
+  app.get('/api/graph', async (req, res) => {
+    try {
+      const items = await Item.find();
+      res.send(items);
+    } catch (error) {
+      console.error(error);
+    }
   });
 };
+
+export default routes;
