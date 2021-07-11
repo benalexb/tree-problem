@@ -4,8 +4,8 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import { routes } from './routes';
-import { dbConnectionConfig } from './db/connectionConfig';
-import { getItemModel } from './db/item.model';
+import { dbConnectionConfig } from '../db/connectionConfig';
+import { getItemModel } from '../db/item.model';
 
 // Connect to the database
 mongoose.connect(process.env.DB_CONNECTION, dbConnectionConfig);

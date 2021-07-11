@@ -5,11 +5,13 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "env-cmd node --experimental-specifier-resolution=node index",
-    "dev": "env-cmd nodemon --experimental-specifier-resolution=node index",
-    "lint": "eslint --fix index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate": "env-cmd node --experimental-specifier-resolution=node ./db/migration"
+    "start": "env-cmd node --experimental-specifier-resolution=node ./src/index",
+    "dev": "env-cmd nodemon --experimental-specifier-resolution=node ./src/index",
+    "test": "jest --coverage",
+    "test:dev": "jest --watch",
+    "lint": "eslint --fix",
+    "migrate": "env-cmd node --experimental-specifier-resolution=node ./db/migration",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -25,14 +27,20 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "lodash": "^4.17.21",
     "mongoose": "^5.13.2",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "babel-jest": "^27.0.6",
     "env-cmd": "^10.1.0",
     "eslint": "^7.30.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.4",
+    "husky": "^7.0.1",
+    "jest": "^27.0.6",
     "nodemon": "^2.0.12"
   }
 }

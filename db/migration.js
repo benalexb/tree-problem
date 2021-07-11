@@ -57,7 +57,7 @@ const resetModelCollection = async (model) => {
 const insertItems = async (Item, data = []) => {
   let insertion;
   try {
-    insertion = Item.insertMany(
+    insertion = await Item.insertMany(
       // Set parent attribute to null when it is an empty string
       data.map(({ parent, ...attributes }) => ({ ...attributes, parent: parent || null })),
     );

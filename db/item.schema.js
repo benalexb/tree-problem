@@ -6,8 +6,7 @@ export const itemSchema = new mongoose.Schema({
   name: {
     type: Types.String,
     required: true,
-    unique: true,
-    index: true,
+    index: { unique: true },
   },
   description: { type: Types.String, required: true },
   parent: Types.String,
