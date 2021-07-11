@@ -28,6 +28,9 @@ export const findRoot = (itemList = []) => {
  * while the match is removed from the itemList.
  *
  * Mutates the itemList and the children array.
+ * 
+ * The strategy around modifying the original itemList array is an attempt to make the aggregation
+ * have logarithmic time complexity O(n log n)
  *
  * @param {Array} itemList
  * @param {Array} children
@@ -36,6 +39,7 @@ export const aggregateChildren = (itemList = [], children = []) => {
   // Iterate children array
   for (let i = 0; i <= children.length; i++) {
     for (let k = 0; k <= itemList.length; k++) {
+      // Match nodes by name
       if (itemList[k] && children[i] && itemList[k].name === children[i].name) {
         // Replace the child entry with the matched item (which may contain children)
         children.splice(i, 1, itemList.splice(k, 1).pop());
