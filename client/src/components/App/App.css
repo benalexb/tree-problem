@@ -14,3 +14,7 @@
 .rd3t-label__title {
   transform: translate(-45px, -40px);
 }
+
+.selected-circle {
+  fill: #6495ed;
+}
