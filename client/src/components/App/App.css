@@ -6,3 +6,11 @@
   width: 100vw;
   height: 100vh;
 }
+
+.rd3t-node > circle {
+  r: 30;
+}
+
+.rd3t-label__title {
+  transform: translate(-45px, -40px);
+}

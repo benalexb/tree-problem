@@ -28,8 +28,8 @@ export const findRoot = (itemList = []) => {
  * while the match is removed from the itemList.
  *
  * Mutates the itemList and the children array.
- * 
- * The strategy around modifying the original itemList array is an attempt to make the aggregation
+ *
+ * The strategy around modifying the original itemList array is an attempt at making the aggregation
  * have logarithmic time complexity O(n log n)
  *
  * @param {Array} itemList
