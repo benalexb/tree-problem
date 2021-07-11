@@ -1,28 +1,19 @@
 {
-  "name": "tree-problem",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/index.js",
   "type": "module",
   "scripts": {
     "start": "env-cmd node --experimental-specifier-resolution=node ./src/index",
     "dev": "env-cmd nodemon --experimental-specifier-resolution=node ./src/index",
+    "migrate": "env-cmd node --experimental-specifier-resolution=node ./db/migration",
     "test": "jest --coverage",
     "test:dev": "jest --watch",
-    "lint": "eslint --fix",
-    "migrate": "env-cmd node --experimental-specifier-resolution=node ./db/migration",
-    "prepare": "husky install"
+    "lint": "eslint --fix"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/benalexb/tree-problem.git"
-  },
-  "author": "Benjamin A. de Macedo Barreto",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/benalexb/tree-problem/issues"
-  },
-  "homepage": "https://github.com/benalexb/tree-problem#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -39,7 +30,6 @@
     "eslint": "^7.30.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.4",
-    "husky": "^7.0.1",
     "jest": "^27.0.6",
     "nodemon": "^2.0.12"
   }
