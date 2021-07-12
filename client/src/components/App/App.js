@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Tree from 'react-d3-tree';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
@@ -9,7 +9,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Popover from '@material-ui/core/Popover';
 
-function App() {
+export const App = () => {
   const [data, setData] = useState(null);
   const [open, setOpen] = useState(false);
   const [node, setNode] = useState({});
@@ -34,35 +34,36 @@ function App() {
   return (
     <div className="app">
       {!!data && (
-        <div id="treeWrapper" className="treeWrapper">
+        <div id="treeWrapper" className="treeWrapper" data-testid="tree-wrapper">
           <Tree
             data={data}
             collapsible={false}
             pathFunc="step"
-            translate={{ x: 500, y: 500 }}
+            translate={{ x: 200, y: 400 }}
             nodeSize={{ x: 300, y: 140 }}
-            onNodeClick={({ data }, { target }) => {
+            onNodeClick={({ data: nodeData }, { target }) => {
               target.classList.add('selected-circle');
               circle.current = target;
-              setNode(data);
+              setNode(nodeData);
               setOpen(true);
             }}
           />
         </div>
       )}
       <Popover
+        data-testid="pop-over"
         open={open}
         anchorEl={circle.current}
         onClose={handleClose}
         anchorOrigin={{ vertical: 'center', horizontal: 'center' }}
         transformOrigin={{ vertical: 'top', horizontal: 'left' }}
       >
-        <DialogTitle>{node.name}</DialogTitle>
+        <DialogTitle data-testid="node-title">{node.name}</DialogTitle>
         <DialogContent>
-          <DialogContentText>{node.description}</DialogContentText>
+          <DialogContentText data-testid="node-description">{node.description}</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
+          <Button data-testid="dialog-close-button" onClick={handleClose}>Close</Button>
         </DialogActions>
       </Popover>
     </div>

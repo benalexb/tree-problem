@@ -14,15 +14,15 @@ const mockRes = {
   },
 };
 
+beforeAll(() => {
+  jest.spyOn(global.console, 'error').mockImplementation(() => {});
+});
+
+afterAll(() => {
+  global.console.error.mockRestore();
+});
+
 describe('useCache', () => {
-  beforeAll(() => {
-    jest.spyOn(global.console, 'error').mockImplementation(() => {});
-  });
-
-  afterAll(() => {
-    global.console.error.mockRestore();
-  });
-
   beforeEach(() => {
     mockGetAsync.mockReset().mockImplementation(async () => JSON.stringify(mockCachedResponse));
     mockRes.locals.cachedResponse = undefined;
@@ -43,14 +43,6 @@ describe('useCache', () => {
 });
 
 describe('breakCache', () => {
-  beforeAll(() => {
-    jest.spyOn(global.console, 'error').mockImplementation(() => {});
-  });
-
-  afterAll(() => {
-    global.console.error.mockRestore();
-  });
-
   beforeEach(() => {
     mockNext.mockReset();
     mockDelAsync.mockReset();
