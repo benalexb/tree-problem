@@ -26,6 +26,12 @@ docker-compose up -d
 npm run migrate
 ```
 
+### Install Dependencies
+```bash
+# If not already done, run the install command for both server and client.
+npm install
+```
+
 ## Running the Application
 
 ### How do I start/stop the database/redis?
@@ -55,7 +61,7 @@ npm run dev
 # From within the client directory
 
 # Start client dev server
-npm run dev
+npm start
 
 # Local: http://localhost:3000
 ```
