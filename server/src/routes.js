@@ -8,6 +8,7 @@ export const routes = (app) => {
 
   app.get('/api/graph', useCache, async (req, res) => {
     const { models, redis, cachedResponse } = res.locals;
+    let response;
 
     if (cachedResponse) {
       // Send cached response and perform an early exit.
@@ -31,17 +32,19 @@ export const routes = (app) => {
       // Tree aggregation
       const rootNode = findRoot(items);
       aggregateChildren(items, rootNode.children);
+      response = rootNode;
 
       // Cache the response in Redis
       await redis.setAsync(req.path, JSON.stringify(rootNode));
-      res.send(rootNode);
     } catch (error) {
       console.error(error);
     }
+
+    return res.send(response);
   });
 
   app.post('/api/graph', breakCache, (req, res) => {
-    res.send('Caching on /api/graph has been cleared')
+    res.send('Caching on /api/graph has been cleared');
   });
 };
 

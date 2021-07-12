@@ -15,8 +15,15 @@ const mockRes = {
 };
 
 describe('useCache', () => {
+  beforeAll(() => {
+    jest.spyOn(global.console, 'error').mockImplementation(() => {});
+  });
+
+  afterAll(() => {
+    global.console.error.mockRestore();
+  });
+
   beforeEach(() => {
-    mockNext.mockReset();
     mockGetAsync.mockReset().mockImplementation(async () => JSON.stringify(mockCachedResponse));
     mockRes.locals.cachedResponse = undefined;
   });
@@ -28,9 +35,22 @@ describe('useCache', () => {
     expect(mockRes.locals.cachedResponse).toBeDefined();
     expect(mockRes.locals.cachedResponse).toEqual(mockCachedResponse);
   });
+
+  it('should handle errors', async () => {
+    await useCache(mockReq, mockRes, undefined);
+    expect(global.console.error).toHaveBeenCalled();
+  });
 });
 
 describe('breakCache', () => {
+  beforeAll(() => {
+    jest.spyOn(global.console, 'error').mockImplementation(() => {});
+  });
+
+  afterAll(() => {
+    global.console.error.mockRestore();
+  });
+
   beforeEach(() => {
     mockNext.mockReset();
     mockDelAsync.mockReset();
@@ -42,5 +62,10 @@ describe('breakCache', () => {
     expect(mockNext).toHaveBeenCalled();
     expect(mockDelAsync).toHaveBeenCalled();
     expect(mockRes.locals.cachedResponse).not.toBeDefined();
+  });
+
+  it('should handle errors', async () => {
+    await breakCache(mockReq, mockRes, undefined);
+    expect(global.console.error).toHaveBeenCalled();
   });
 });

@@ -10,7 +10,7 @@
     "migrate": "env-cmd node --experimental-specifier-resolution=node ./db/migration",
     "test": "jest --coverage",
     "test:dev": "jest --watch",
-    "lint": "eslint --fix"
+    "lint": "eslint --fix ."
   },
   "author": "",
   "license": "ISC",
