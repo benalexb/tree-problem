@@ -39,7 +39,7 @@ npm install
 # From within the server directory
 
 # Start services
-docker-compose up
+docker-compose up -d
 
 # Stop services
 docker-compose down
