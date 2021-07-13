@@ -65,3 +65,16 @@ npm start
 
 # Local: http://localhost:3000
 ```
+
+## Interesting Features
+
+* **GET** `/api/graph` caches the aggregated data in Redis. All subsequent requests are served at a much lower latency.
+* **POST** `/api/graph` breaks the cache.
+* You can also seed the database using a random data sample. Just repeat the data migration steps, and make sure to clear Redis' cache after running the migration command.
+```bash
+# From within the server directory
+npm run migrate:random
+
+# While the api server is running, you can use CURL to clear the cache.
+curl -X POST http://localhost:5000/api/graph
+```
