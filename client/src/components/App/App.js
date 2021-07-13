@@ -36,11 +36,12 @@ export const App = () => {
       {!!data && (
         <div id="treeWrapper" className="treeWrapper" data-testid="tree-wrapper">
           <Tree
+            zoomable
             data={data}
             collapsible={false}
             pathFunc="step"
             translate={{ x: 200, y: 400 }}
-            nodeSize={{ x: 300, y: 140 }}
+            nodeSize={{ x: 300, y: 100 }}
             onNodeClick={({ data: nodeData }, { target }) => {
               target.classList.add('selected-circle');
               circle.current = target;
