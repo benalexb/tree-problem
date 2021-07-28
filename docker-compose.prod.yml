@@ -18,11 +18,21 @@ services:
     environment:
       - REDIS_URL=$REDIS_URL
       - DB_CONNECTION=$DB_CONNECTION
-    build: .
+    build:
+      context: ./server
     ports:
       - "5000:5000"
+  tree-client:
+    environment:
+      - REACT_APP_API_URL=http://api-server:5000/api
+    build:
+      context: ./client
+    ports:
+      - "3000:80"
 
 volumes:
   db-data:
   mongo-config:
   redis-data:
+
+# docker-compose -f ./docker-compose.prod.yml --env-file ./server/.env up

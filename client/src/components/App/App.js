@@ -18,7 +18,8 @@ export const App = () => {
   useEffect(() => {
     (async () => {
       try {
-        const { data: fetchedData } = await axios.get('http://localhost:5000/api/graph');
+        const apiURL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+        const { data: fetchedData } = await axios.get(`${apiURL}/graph`);
         setData(fetchedData);
       } catch (error) {
         console.error(error);

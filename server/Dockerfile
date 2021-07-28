@@ -1,12 +1,10 @@
 FROM node:16-alpine
 
-WORKDIR /usr/app
+WORKDIR /usr/app/server
 
 COPY ./package.json ./
 RUN npm install
 
-COPY ./src ./src
-COPY ./db ./db
-COPY ./babel.config.cjs ./
+COPY . .
 
 CMD [ "npm", "run", "dev" ]
