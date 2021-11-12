@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.3"
 
 services:
   mongodb-server:
@@ -6,6 +6,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
+      # bbarreto_dev: try to understand exactly what's happening with these volumes.
       - db-data:/data/db
       - mongo-config:/data/configdb
   redis-server:
@@ -13,8 +14,22 @@ services:
     ports:
       - "6379:6379"
     volumes:
+      # bbarreto_dev: try to understand exactly what's happening with these volumes.
       - redis-data:/data/redis
+  api-server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5000:5000"
+    volumes:
+      - /usr/app/server/node_modules
+      - ./server:/usr/app/server
+    environment:
+      - REDIS_URL=redis://redis-server:6379
+      - DB_CONNECTION=mongodb://mongodb-server:27017/tree-study
 
+# bbarreto_dev: what happens when you declare volumes like this?
 volumes:
   db-data:
   mongo-config:

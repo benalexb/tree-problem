@@ -5,8 +5,9 @@
   "main": "./src/index.js",
   "type": "module",
   "scripts": {
-    "start": "env-cmd --silent node --experimental-specifier-resolution=node ./src/index",
+    "start": "node --experimental-specifier-resolution=node ./src/index",
     "dev": "env-cmd --silent nodemon --experimental-specifier-resolution=node ./src/index",
+    "dev:docker": "nodemon --experimental-specifier-resolution=node ./src/index",
     "migrate": "env-cmd --silent node --experimental-specifier-resolution=node ./db/migration",
     "migrate:random": "env-cmd --silent node --experimental-specifier-resolution=node ./db/migration random",
     "test": "jest --coverage",
